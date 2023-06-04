@@ -12,13 +12,11 @@ export default function App() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    //~~...~~ spread operator helps chreating a new copy of an array "...arrayName"
-    setToDo(currentToDo => {
+    setToDo(currentToDos => {
       return [
-        ...currentToDo, { id: crypto.randomUUID(), title: newItem, completed: false}
+        ...currentToDos, { id: crypto.randomUUID(), title: newItem, completed: false }
       ]
-    });
-
+    })
     console.log(toDos);
   }
 
@@ -42,7 +40,7 @@ export default function App() {
         </li>
         <li>
           <label>
-            <input type="checkbox"/>
+            <input type="checkbox" />
             Item 1
           </label>
           <button className="btn btn-danger">Delete</button>
