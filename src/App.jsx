@@ -23,8 +23,9 @@ export default function App() {
   }
 
   function toggleTodo(id, completed) {
+    console.log(completed);
     setToDos(currentToDos => {
-      return currentToDos.map(todo => {
+      return currentToDos.map(todo => {        
         if(todo.id === id){
           return { ...todo, completed}
         }
@@ -33,7 +34,14 @@ export default function App() {
       })
     })
   }
-  console.log(toDos);
+
+  function deleteToggle(id) {
+    setToDos(currentToDos => {
+      //if current ToDo is not equal to previous ToDo I wanna keep it else I will delete it
+      return currentToDos.filter(todo => todo.id !== id)
+    })
+  }
+  // console.log(toDos); 
   
   return (
     <>
@@ -57,11 +65,11 @@ export default function App() {
             <input
               type="checkbox"
               checked={todo.completed}
-              onChange={e => toggleTodo(todo.id, e.target.value)}
+              onChange={e => toggleTodo(todo.id, e.target.checked)}
             />
             {todo.title}
           </label>
-          <button className="btn btn-danger">Delete</button>
+          <button className="btn btn-danger" onClick={() => deleteToggle(todo.id)}>Delete</button>
         </li>
         })}
       </ul>
